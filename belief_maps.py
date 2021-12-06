@@ -3,6 +3,13 @@ import matplotlib.pyplot as plt
 import torch
 from detector import *
 import os
+import numpy as np
+from cuboid import *
+import yaml
+import pyrealsense2 as rs
+from PIL import Image
+from PIL import ImageDraw
+import time
 os.environ['KMP_DUPLICATE_LIB_OK']='True'
 ## Settings
 name = 'bolt'
@@ -39,7 +46,7 @@ net_model = model.net
 
 
 
-# Run network inference vertex顶点  affinity相关性
+# Run network inference vertex  affinity
 image_tensor = transform(in_img)
 image_torch = Variable(image_tensor).cuda().unsqueeze(0)
 
@@ -59,13 +66,7 @@ plt.show()
 
 
 
-import numpy as np
-from cuboid import *
-import yaml
-import pyrealsense2 as rs
-from PIL import Image
-from PIL import ImageDraw
-import time
+
 
 ### Code to visualize the neural network output
 
@@ -192,7 +193,7 @@ with open(yaml_path, 'r') as stream:
 
 
 
-# img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)##读取图片
+# img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
 # Copy and draw image
 img_copy = in_img.copy()
